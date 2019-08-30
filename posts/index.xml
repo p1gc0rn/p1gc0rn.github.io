@@ -1,19 +1,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Posts on ~Welcome~</title>
-		<link>https://0v0.space/posts/</link>
+		<link>http://0v0.space/posts/</link>
 		<description>Recent content in Posts on ~Welcome~</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
-		<atom:link href="https://0v0.space/posts/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="http://0v0.space/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Creating a New Theme</title>
-			<link>https://0v0.space/posts/lol/</link>
+			<link>http://0v0.space/posts/lol/</link>
 			<pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
 			
-			<guid>https://0v0.space/posts/lol/</guid>
+			<guid>http://0v0.space/posts/lol/</guid>
 			<description>LOL</description>
 			<content type="html"><![CDATA[<p>LOL</p>
 ]]></content>
