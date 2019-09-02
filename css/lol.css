@@ -6,7 +6,16 @@ h1{
  color: #FFB8D1;
 
 }
-a{
+
+.site-branding a{
  color: #ffea00;
 
+}
+
+#home-nav a{
+ color: #fff352;
+}
+
+#home-footer p{
+ color: #ff857f;
 }
