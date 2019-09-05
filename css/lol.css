@@ -18,10 +18,13 @@ h2{
 .hide-in-mobile a{
  color: #f92672;
 }
+
+.unsw{
+ color: #ffb8d1;
+}
 #home-nav a{
  color: #fff352;
 }
-
 #site-footer p{
  color: #ff857f;
 }
