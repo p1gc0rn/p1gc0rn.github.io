@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>~Welcome :D~</title>
+    <title>~Aloha :D~</title>
     <link>https://0v0.space/</link>
-    <description>Recent content on ~Welcome :D~</description>
+    <description>Recent content on ~Aloha :D~</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
@@ -35,8 +35,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://0v0.space/about-me/</guid>
-      <description>whoami Welcome to my blog~
-My name is Penny and I am studying Computer Science at University of New South Wales. I am also CTF Head of The Security Society of UNSW. My main interest is security so this blog is created for personal writings about security related stuff.</description>
+      <description>whoami Welcome to my personal space~
+My name is Penny and I am studying Computer Science at University of New South Wales. I am also CTF Head of The Security Society of UNSW. My main interest is security so this blog is created for personal writings about security related stuff (and probably memes too).
+I am quite active on Twitter so if you want to have a chat with me, opt for Twitter.</description>
     </item>
     
   </channel>
