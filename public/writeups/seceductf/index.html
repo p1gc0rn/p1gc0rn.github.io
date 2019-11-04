@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#B8A2CE">
+	<meta name="msapplication-TileColor" content="#B8A2CE">
+
+<meta itemprop="name" content="SECedu CTF">
+<meta itemprop="description" content="Geegle Summit 2020! It was a web challenge where I needed to be root to get the flag. From the homepage of the website, it is understood that I need to upload a QR code and the website would scan it. Meanwhile, &ldquo;ENTER GUEST AND HOST NAMES&rdquo; didnt lead to any where. When I checked round, I figured out robots.txt contains a link /test/qrgen which leds to a page creating QR code by giving input.">
+
+
+<meta itemprop="datePublished" content="2019-11-04T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-11-04T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="494">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="SECedu CTF" />
+<meta property="og:description" content="Geegle Summit 2020! It was a web challenge where I needed to be root to get the flag. From the homepage of the website, it is understood that I need to upload a QR code and the website would scan it. Meanwhile, &ldquo;ENTER GUEST AND HOST NAMES&rdquo; didnt lead to any where. When I checked round, I figured out robots.txt contains a link /test/qrgen which leds to a page creating QR code by giving input." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://0v0.space/writeups/seceductf/" />
+<meta property="article:published_time" content="2019-11-04T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-11-04T00:00:00&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SECedu CTF"/>
+<meta name="twitter:description" content="Geegle Summit 2020! It was a web challenge where I needed to be root to get the flag. From the homepage of the website, it is understood that I need to upload a QR code and the website would scan it. Meanwhile, &ldquo;ENTER GUEST AND HOST NAMES&rdquo; didnt lead to any where. When I checked round, I figured out robots.txt contains a link /test/qrgen which leds to a page creating QR code by giving input."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>SECedu CTF</title>
+	<link rel="stylesheet" href="https://0v0.space/css/style.min.49b4809a3b108bb59bb550273704a32f0cba00091aed6772765693d5c6843f67.css" integrity="sha256-SbSAmjsQi7WbtVAnNwSjLwy6AAka7WdydlaT1caEP2c=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://0v0.space/css/lol.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://0v0.space">~Aloha :D~</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://0v0.space/writeups/">ctf-writeups</a>
+				<a href="https://0v0.space/forensics/">digital-forensics</a>
+				<a href="https://0v0.space/about-me/">whoami</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/pennyle09" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://github.com/p1gc0rn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="mailto:penny@unswsecurity.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://0v0.space/writeups/">ctf-writeups</a></li>
+			<li><a href="https://0v0.space/forensics/">digital-forensics</a></li>
+			<li><a href="https://0v0.space/about-me/">whoami</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>SECedu CTF</h1>
+		<div class="content">
+			
+
+<h3 id="geegle-summit-2020">Geegle Summit 2020!<a href="#geegle-summit-2020" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>It was a web challenge where I needed to be root to get the flag. From the homepage of <a href="https://guest.corp.geegle.org/">the website</a>, it is understood that I need to upload a QR code and the website would scan it. Meanwhile, &ldquo;ENTER GUEST AND HOST NAMES&rdquo; didnt lead to any where. When I checked round, I figured out robots.txt contains a link /test/qrgen which leds to a page creating QR code by giving input.</p>
+
+<h4 id="vunerability">Vunerability<a href="#vunerability" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>The QR code changes depends on the length of th einput. The more characters of the input has, the denser the QR code is. For example, below are the QR code of n00b (up) and n00bbbbbbbbbbbbbbbbbbbbbbbbb (below).
+<img src="https://i.imgur.com/BFNU9de.png" alt="n00b" /></p>
+
+<p><img src="https://i.imgur.com/tdwJLpb.png" alt="" /></p>
+
+<p>Uploading those QR codes into scanning at <a href="https://guest.corp.geegle.org/scan">https://guest.corp.geegle.org/scan</a>, the error still says &ldquo;No access for &lsquo;guest&rsquo;, you must be &lsquo;root&rsquo;&rdquo;. After playing around with the input&rsquo;s length, I figured out that if the input is long enough, it will change &lsquo;guest&rsquo; to part of the input. For example, my input has 50 characters (aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaama) and the error showed that &ldquo;No access for &lsquo;iaaajaaakaaalaaama&rsquo;, you must be &lsquo;root&rsquo;&rdquo;  which took the last 18 characters and discarded 32 first characters. And this led to the exploit below.</p>
+
+<h4 id="exploit">Exploit<a href="#exploit" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>In order to make myself become root, I crafted an input which contains 32 characters of space then root. In encoded URL, a space is represented with %20. So my input looks like this <em>%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20root</em></p>
+
+<p>After creating QR code, I uploaded and got the flag.
+<img src="https://i.imgur.com/cJNN5sh.png" alt="flag" /></p>
+
+<h3 id="ddos-detected">DDoS Detected<a href="#ddos-detected" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>This challenge requires players to figure which IP address sent the most data size to a specific IP in total. Since each time we only have 5 seconds to answers, we decided to make a Python script to do the things for us. The challenge gives us a bunch of information regarding source IP addresses (attacker IPs), destination IP addresses and data sizes like below.</p>
+
+<p><img src="https://i.imgur.com/cF4AISd.png" alt="" /></p>
+
+<p>First of all, we will get the IP of the DST (victim IP), then we get all SRC IPs which send data to that DST IP and sum up all the data size regarding SRC IPs in order to figure out which one is attacking (the one sent the most data size totally). Since the format of information the challenge gave us is JSON format, we used JSON module in Python to extract DST, SRC and data size.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">([</span><span class="s2">&#34;./cli-relay&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cookies&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;who-is-attacking-me.corp.geegle.org&#34;</span><span class="p">])</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;data to &#34;</span><span class="p">)</span>
+<span class="n">my_ip</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">(</span><span class="n">keepends</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span> <span class="c1">#DEST IP</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;]&#34;</span><span class="p">)</span>
+
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">by_sources</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">#get SRC IPs</span>
+<span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">decoded</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">packet</span><span class="p">[</span><span class="s1">&#39;DST&#39;</span><span class="p">])</span> <span class="o">==</span>  <span class="nb">str</span><span class="p">(</span><span class="n">my_ip</span><span class="p">)):</span>
+       <span class="n">src</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;SRC&#39;</span><span class="p">]</span>
+       <span class="k">if</span> <span class="n">src</span> <span class="ow">in</span> <span class="n">by_sources</span><span class="p">:</span>
+           <span class="n">by_sources</span><span class="p">[</span><span class="n">src</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+       <span class="k">else</span><span class="p">:</span>
+           <span class="n">by_sources</span><span class="p">[</span><span class="n">src</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">packet</span><span class="p">]</span>
+
+<span class="n">source_sizes</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">#get data size</span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">by_sources</span><span class="p">:</span>
+    <span class="n">source_sizes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">packet</span><span class="p">[</span><span class="s2">&#34;data_size&#34;</span><span class="p">]</span> <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">by_sources</span><span class="p">[</span><span class="n">source</span><span class="p">]])</span>
+
+<span class="n">maxn</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">maxip</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1">#find which IP attacking </span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">source_sizes</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">source_sizes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxn</span><span class="p">:</span>
+        <span class="n">maxn</span> <span class="o">=</span> <span class="n">source_sizes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span>
+        <span class="n">maxip</span> <span class="o">=</span> <span class="n">source</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">maxip</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span></code></pre></div>
+<p>And we got the flag!</p>
+
+<p><img src="https://i.imgur.com/5J8aKNN.png" alt="" /></p>
+
+		</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://0v0.space">(&#39;ω&#39;)</a></p>
+	</footer>
+
+
+
+	<script src="https://0v0.space/js/bundle.min.490e43e5af6db5906f28afa49a4e16bf9f626b758e3fca92f146b870eb94bb37.js" integrity="sha256-SQ5D5a9ttZBvKK+kmk4Wv59ia3WOP8qS8Ua4cOuUuzc=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
