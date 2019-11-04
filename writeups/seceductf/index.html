@@ -83,21 +83,23 @@
 
 <h4 id="vunerability">Vunerability<a href="#vunerability" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
-<p>The QR code changes depends on the length of th einput. The more characters of the input has, the denser the QR code is. For example, below are the QR code of n00b (left) and n00bbbbbbbbbbbbbbbbbbbbbbbbb (right).
-<img src="https://i.imgur.com/BFNU9de.png" alt="n00b" /> <img src="https://i.imgur.com/tdwJLpb.png" alt="" /></p>
+<p>The QR code changes depends on the length of th einput. The more characters of the input has, the denser the QR code is. For example, below are the QR code of n00b (up) and n00bbbbbbbbbbbbbbbbbbbbbbbbb (below).
+<img src="https://i.imgur.com/BFNU9de.png" alt="n00b" /></p>
+
+<p><img src="https://i.imgur.com/tdwJLpb.png" alt="" /></p>
 
 <p>Uploading those QR codes into scanning at <a href="https://guest.corp.geegle.org/scan">https://guest.corp.geegle.org/scan</a>, the error still says &ldquo;No access for &lsquo;guest&rsquo;, you must be &lsquo;root&rsquo;&rdquo;. After playing around with the input&rsquo;s length, I figured out that if the input is long enough, it will change &lsquo;guest&rsquo; to part of the input. For example, my input has 50 characters (aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaama) and the error showed that &ldquo;No access for &lsquo;iaaajaaakaaalaaama&rsquo;, you must be &lsquo;root&rsquo;&rdquo;  which took the last 18 characters and discarded 32 first characters. And this led to the exploit below.</p>
 
 <h4 id="exploit">Exploit<a href="#exploit" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
-<p>In order to make myself become root, I crafted an input which contains 32 characters of space then root. In encoded URL, a space is represented with %20. So my input looks like this %20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20root</p>
+<p>In order to make myself become root, I crafted an input which contains 32 characters of space then root. In encoded URL, a space is represented with %20. So my input looks like this <em>%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20root</em></p>
 
 <p>After creating QR code, I uploaded and got the flag.
 <img src="https://i.imgur.com/cJNN5sh.png" alt="flag" /></p>
 
 <h3 id="ddos-detected">DDoS Detected<a href="#ddos-detected" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
-<p>This challenge requires players to figure which IP address sent the most data size to a specific IP in total. Since each time we only have 5 seconds to answers, we decided to make a Python script to do the things for us. The challenge gives us a bunch of information regarding source IP addresses (attacker IPs), destination IP addresses and data sizes like below</p>
+<p>This challenge requires players to figure which IP address sent the most data size to a specific IP in total. Since each time we only have 5 seconds to answers, we decided to make a Python script to do the things for us. The challenge gives us a bunch of information regarding source IP addresses (attacker IPs), destination IP addresses and data sizes like below.</p>
 
 <p><img src="https://i.imgur.com/cF4AISd.png" alt="" /></p>
 
