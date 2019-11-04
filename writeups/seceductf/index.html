@@ -14,7 +14,7 @@
 
 <meta itemprop="datePublished" content="2019-11-04T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-04T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="467">
+<meta itemprop="wordCount" content="494">
 
 
 
@@ -108,43 +108,43 @@
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">([</span><span class="s2">&#34;./cli-relay&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cookies&gt;&#34;&#34;, &#34;</span><span class="n">who</span><span class="o">-</span><span class="ow">is</span><span class="o">-</span><span class="n">attacking</span><span class="o">-</span><span class="n">me</span><span class="o">.</span><span class="n">corp</span><span class="o">.</span><span class="n">geegle</span><span class="o">.</span><span class="n">org</span><span class="s2">&#34;])</span><span class="err">
-</span><span class="err"></span><span class="s2">p.recvuntil(&#34;</span><span class="n">data</span> <span class="n">to</span> <span class="s2">&#34;)</span><span class="err">
-</span><span class="err"></span><span class="s2">my_ip = p.recvline(keepends = False) #DEST IP</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">p.recvline()</span><span class="err">
-</span><span class="err"></span><span class="s2">data = p.recvuntil(&#34;</span><span class="p">]</span><span class="s2">&#34;)</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">decoded = json.loads(data)</span><span class="err">
-</span><span class="err"></span><span class="s2">by_sources = {}</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">#get SRC IPs</span><span class="err">
-</span><span class="err"></span><span class="s2">for packet in decoded:</span><span class="err">
-</span><span class="err"></span><span class="s2">    if (str(packet[&#39;DST&#39;]) ==  str(my_ip)):</span><span class="err">
-</span><span class="err"></span><span class="s2">       src = packet[&#39;SRC&#39;]</span><span class="err">
-</span><span class="err"></span><span class="s2">       if src in by_sources:</span><span class="err">
-</span><span class="err"></span><span class="s2">           by_sources[src].append(packet)</span><span class="err">
-</span><span class="err"></span><span class="s2">       else:</span><span class="err">
-</span><span class="err"></span><span class="s2">           by_sources[src] = [packet]</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">source_sizes = {}</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">#get data size</span><span class="err">
-</span><span class="err"></span><span class="s2">for source in by_sources:</span><span class="err">
-</span><span class="err"></span><span class="s2">    source_sizes[source] = sum([packet[&#34;</span><span class="n">data_size</span><span class="s2">&#34;] for packet in by_sources[source]])</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">maxn = 0</span><span class="err">
-</span><span class="err"></span><span class="s2">maxip = None</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">#find which IP attacking </span><span class="err">
-</span><span class="err"></span><span class="s2">for source in source_sizes:</span><span class="err">
-</span><span class="err"></span><span class="s2">    if source_sizes[source] &gt; maxn:</span><span class="err">
-</span><span class="err"></span><span class="s2">        maxn = source_sizes[source]</span><span class="err">
-</span><span class="err"></span><span class="s2">        maxip = source</span><span class="err">
-</span><span class="err"></span><span class="s2">p.recvline()</span><span class="err">
-</span><span class="err"></span><span class="s2">p.sendline(maxip)</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="s2">p.interactive()</span></code></pre></div>
+<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">([</span><span class="s2">&#34;./cli-relay&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cookies&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;who-is-attacking-me.corp.geegle.org&#34;</span><span class="p">])</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;data to &#34;</span><span class="p">)</span>
+<span class="n">my_ip</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">(</span><span class="n">keepends</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span> <span class="c1">#DEST IP</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;]&#34;</span><span class="p">)</span>
+
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">by_sources</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">#get SRC IPs</span>
+<span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">decoded</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">packet</span><span class="p">[</span><span class="s1">&#39;DST&#39;</span><span class="p">])</span> <span class="o">==</span>  <span class="nb">str</span><span class="p">(</span><span class="n">my_ip</span><span class="p">)):</span>
+       <span class="n">src</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;SRC&#39;</span><span class="p">]</span>
+       <span class="k">if</span> <span class="n">src</span> <span class="ow">in</span> <span class="n">by_sources</span><span class="p">:</span>
+           <span class="n">by_sources</span><span class="p">[</span><span class="n">src</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+       <span class="k">else</span><span class="p">:</span>
+           <span class="n">by_sources</span><span class="p">[</span><span class="n">src</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">packet</span><span class="p">]</span>
+
+<span class="n">source_sizes</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">#get data size</span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">by_sources</span><span class="p">:</span>
+    <span class="n">source_sizes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">packet</span><span class="p">[</span><span class="s2">&#34;data_size&#34;</span><span class="p">]</span> <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">by_sources</span><span class="p">[</span><span class="n">source</span><span class="p">]])</span>
+
+<span class="n">maxn</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">maxip</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1">#find which IP attacking </span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">source_sizes</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">source_sizes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxn</span><span class="p">:</span>
+        <span class="n">maxn</span> <span class="o">=</span> <span class="n">source_sizes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span>
+        <span class="n">maxip</span> <span class="o">=</span> <span class="n">source</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">maxip</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span></code></pre></div>
 <p>And we got the flag!</p>
 
 <p><img src="https://i.imgur.com/5J8aKNN.png" alt="" /></p>
