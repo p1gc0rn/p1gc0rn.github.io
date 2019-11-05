@@ -13,6 +13,15 @@
     
     <item>
       <title>SECedu CTF</title>
+      <link>https://0v0.space/forensics/seceductf/</link>
+      <pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://0v0.space/forensics/seceductf/</guid>
+      <description>Geegle Summit 2020! It was a web challenge where I needed to be root to get the flag. From the homepage of the website, it is understood that I need to upload a QR code and the website would scan it. Meanwhile, &amp;ldquo;ENTER GUEST AND HOST NAMES&amp;rdquo; didnt lead to any where. When I checked round, I figured out robots.txt contains a link /test/qrgen which leds to a page creating QR code by giving input.</description>
+    </item>
+    
+    <item>
+      <title>SECedu CTF</title>
       <link>https://0v0.space/writeups/seceductf/</link>
       <pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate>
       

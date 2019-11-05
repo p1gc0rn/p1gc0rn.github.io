@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Forensics on ~Aloha :D~</title>
+    <link>https://0v0.space/forensics/</link>
+    <description>Recent content in Forensics on ~Aloha :D~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://0v0.space/forensics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SECedu CTF</title>
+      <link>https://0v0.space/forensics/seceductf/</link>
+      <pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://0v0.space/forensics/seceductf/</guid>
+      <description>Geegle Summit 2020! It was a web challenge where I needed to be root to get the flag. From the homepage of the website, it is understood that I need to upload a QR code and the website would scan it. Meanwhile, &amp;ldquo;ENTER GUEST AND HOST NAMES&amp;rdquo; didnt lead to any where. When I checked round, I figured out robots.txt contains a link /test/qrgen which leds to a page creating QR code by giving input.</description>
+    </item>
+    
+  </channel>
+</rss>
